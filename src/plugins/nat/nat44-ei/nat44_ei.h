@@ -38,7 +38,7 @@
 #include <nat/lib/inlines.h>
 
 /* default number of worker handoff frame queue elements */
-#define NAT_FQ_NELTS_DEFAULT 64
+#define NAT_FQ_NELTS_DEFAULT 2048
 
 /* External address and port allocation modes */
 #define foreach_nat44_ei_addr_and_port_alloc_alg                              \

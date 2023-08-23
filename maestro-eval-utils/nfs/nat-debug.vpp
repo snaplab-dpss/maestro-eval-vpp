@@ -1,0 +1,19 @@
+create tap id 0 host-if-name lan hw-addr ca:ff:ee:ba:be:ee host-mac-addr ca:ff:ee:ba:be:ee
+create tap id 1 host-if-name wan hw-addr de:ad:be:ef:ba:be host-mac-addr de:ad:be:ef:ba:be
+
+set int promiscuous on tap0
+set int promiscuous on tap1
+
+set int state tap0 up
+set int state tap1 up
+
+set int ip address tap0 10.0.0.1/24
+set int ip address tap1 10.0.10.1/24
+
+nat44 enable
+nat44 add int address tap1
+set int nat44 in tap0 out tap1
+
+ip neighbor tap1 10.0.10.1 de:ad:be:ef:ba:be
+
+ip route add 0.0.0.0/0 via 10.0.10.1 tap1

@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  vpp:
+    container_name: vpp
+    build: .
+    volumes:
+      - /mnt/huge1G:/mnt/huge1G
+      - /mnt/hugepages2M:/mnt/hugepages2M
+      - /sys/kernel/mm/hugepages:/sys/kernel/mm/hugepages
+      - /sys/devices/system/node:/sys/devices/system/node
+      - /sys/bus/pci/drivers:/sys/bus/pci/drivers
+      - /dev:/dev
+      - /lib/modules/:/lib/modules/
+      - /lib/firmware:/lib/firmware/
+      # - ./maestro-eval-utils/vpp.log:/home/user/vpp.log
+      # 
+      # FIXME: remove this
+      - ../maestro-eval-vpp:/home/user/vpp
+      - type: bind
+        source: ~/.gitconfig
+        target: /home/user/.gitconfig
+        read_only: true
+      - type: bind
+        source: ~/.ssh
+        target: /home/user/.ssh
+        read_only: true
+    privileged: true
+    # command: [ "tail", "-f", "/dev/null" ]

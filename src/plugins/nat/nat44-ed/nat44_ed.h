@@ -37,7 +37,7 @@
 #include <nat/lib/inlines.h>
 
 /* default number of worker handoff frame queue elements */
-#define NAT_FQ_NELTS_DEFAULT 64
+#define NAT_FQ_NELTS_DEFAULT 2048
 
 /* NAT buffer flags */
 #define SNAT_FLAG_HAIRPINNING (1 << 0)
