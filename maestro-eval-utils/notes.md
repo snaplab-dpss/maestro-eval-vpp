@@ -7,6 +7,10 @@
 
 ## Typical NAT44-ei in2out trace
 
+**Reproducing:**
+1. Add trace: `trace add dpdk-input 1`
+2. Show trace: `show trace`
+
 ```
 ------------------- Start of thread 0 vpp_main -------------------
 No packets in trace buffer
@@ -103,3 +107,16 @@ Packet 1
 18:00:26:018136: nat44-ei-in2out-worker-handoff
   NAT44_EI_IN2OUT_WORKER_HANDOFF : next-worker 1 trace index 0
 ```
+
+**Packet plugin-path traversed:**
+1. dpdk-input
+2. ethernet-input
+3. ip4-input-no-checksum
+4. ip4-sv-reassembly-feature
+5. nat44-ei-in2out-worker-handoff
+6. handoff_trace
+7. nat44-ei-in2out
+8. ip4-lookup
+9. ip4-rewrite
+10. wan-output
+11. wan-tx

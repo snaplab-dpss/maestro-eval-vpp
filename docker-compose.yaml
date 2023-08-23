@@ -13,17 +13,5 @@ services:
       - /dev:/dev
       - /lib/modules/:/lib/modules/
       - /lib/firmware:/lib/firmware/
-      # - ./maestro-eval-utils/vpp.log:/home/user/vpp.log
-      # 
-      # FIXME: remove this
-      - ../maestro-eval-vpp:/home/user/vpp
-      - type: bind
-        source: ~/.gitconfig
-        target: /home/user/.gitconfig
-        read_only: true
-      - type: bind
-        source: ~/.ssh
-        target: /home/user/.ssh
-        read_only: true
+      - ./maestro-eval-utils:/home/user/vpp/maestro-eval-utils
     privileged: true
-    # command: [ "tail", "-f", "/dev/null" ]
