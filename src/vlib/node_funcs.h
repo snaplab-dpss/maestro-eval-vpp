@@ -1244,10 +1244,11 @@ always_inline void
 vlib_node_increment_counter (vlib_main_t * vm, u32 node_index,
 			     u32 counter_index, u64 increment)
 {
-  vlib_node_t *n = vlib_get_node (vm, node_index);
-  vlib_error_main_t *em = &vm->error_main;
-  u32 node_counter_base_index = n->error_heap_index;
-  em->counters[node_counter_base_index + counter_index] += increment;
+  // DO NOTHING
+  // vlib_node_t *n = vlib_get_node (vm, node_index);
+  // vlib_error_main_t *em = &vm->error_main;
+  // u32 node_counter_base_index = n->error_heap_index;
+  // em->counters[node_counter_base_index + counter_index] += increment;
 }
 
 /** @brief Create a vlib process
