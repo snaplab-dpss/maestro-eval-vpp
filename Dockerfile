@@ -45,7 +45,13 @@ RUN sudo apt-get install -y \
     linux-tools-generic \
     linux-tools-`uname -r` \
     wget \
-    htop
+    htop \
+    tmux
+
+RUN echo 'set-option -g default-shell /bin/bash' > ~/.tmux.conf
+
+RUN wget https://raw.githubusercontent.com/torvalds/linux/master/tools/perf/perf-archive.sh
+RUN chmod +x perf-archive.sh
 
 SHELL [ "/bin/bash" ]
 CMD [ "/bin/bash" ]

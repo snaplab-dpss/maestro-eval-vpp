@@ -167,3 +167,4 @@ $ $FLAMEGRAPH_DIR/flamegraph.pl out.perf-folded > perf.svg
 - Disabled node counters (`vlib_node_increment_counter`)
 - Disabled IPv4 checksum
 - Removed IPv4 reassembly feature from the NAT44-ei path (`"ip4-sv-reassembly-feature"`)
+- Replaced IPv4 lookup with static forwarding (`ip4_lookup_inline`)
