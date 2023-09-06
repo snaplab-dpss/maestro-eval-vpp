@@ -83,58 +83,56 @@ extern vlib_node_registration_t
 VNET_FEATURE_INIT (ip4_nat_classify, static) = {
   .arc_name = "ip4-unicast",
   .node_name = "nat44-ei-classify",
-  .runs_after = VNET_FEATURES ("acl-plugin-in-ip4-fa",
-			       "ip4-sv-reassembly-feature"),
+  // .runs_after = VNET_FEATURES ("acl-plugin-in-ip4-fa", "ip4-sv-reassembly-feature"),
+  .runs_after = 0,
 };
 VNET_FEATURE_INIT (ip4_nat_handoff_classify, static) = {
   .arc_name = "ip4-unicast",
   .node_name = "nat44-ei-handoff-classify",
-  .runs_after = VNET_FEATURES ("acl-plugin-in-ip4-fa",
-			       "ip4-sv-reassembly-feature"),
+  // .runs_after = VNET_FEATURES ("acl-plugin-in-ip4-fa", "ip4-sv-reassembly-feature"),
+  .runs_after = 0,
 };
 VNET_FEATURE_INIT (ip4_nat44_ei_in2out, static) = {
   .arc_name = "ip4-unicast",
   .node_name = "nat44-ei-in2out",
-  .runs_after = VNET_FEATURES ("acl-plugin-in-ip4-fa",
-			       "ip4-sv-reassembly-feature"),
+  // .runs_after = VNET_FEATURES ("acl-plugin-in-ip4-fa", "ip4-sv-reassembly-feature"),
+  .runs_after = 0,
 };
 VNET_FEATURE_INIT (ip4_nat44_ei_out2in, static) = {
   .arc_name = "ip4-unicast",
   .node_name = "nat44-ei-out2in",
-  .runs_after = VNET_FEATURES ("acl-plugin-in-ip4-fa",
-			       "ip4-sv-reassembly-feature",
-			       "ip4-dhcp-client-detect"),
+  // .runs_after = VNET_FEATURES ("acl-plugin-in-ip4-fa", "ip4-sv-reassembly-feature", "ip4-dhcp-client-detect"),
+  .runs_after = 0,
 };
 VNET_FEATURE_INIT (ip4_nat44_ei_in2out_output, static) = {
   .arc_name = "ip4-output",
   .node_name = "nat44-ei-in2out-output",
-  .runs_after = VNET_FEATURES ("acl-plugin-out-ip4-fa",
-			       "ip4-sv-reassembly-output-feature"),
+  // .runs_after = VNET_FEATURES ("acl-plugin-out-ip4-fa", "ip4-sv-reassembly-output-feature"),
+  .runs_after = 0,
 };
 VNET_FEATURE_INIT (ip4_nat44_ei_in2out_fast, static) = {
   .arc_name = "ip4-unicast",
   .node_name = "nat44-ei-in2out-fast",
-  .runs_after = VNET_FEATURES ("acl-plugin-in-ip4-fa",
-			       "ip4-sv-reassembly-feature"),
+  // .runs_after = VNET_FEATURES ("acl-plugin-in-ip4-fa", "ip4-sv-reassembly-feature"),
+  .runs_after = 0,
 };
 VNET_FEATURE_INIT (ip4_nat44_ei_out2in_fast, static) = {
   .arc_name = "ip4-unicast",
   .node_name = "nat44-ei-out2in-fast",
-  .runs_after = VNET_FEATURES ("acl-plugin-in-ip4-fa",
-			       "ip4-sv-reassembly-feature",
-			       "ip4-dhcp-client-detect"),
+  // .runs_after = VNET_FEATURES ("acl-plugin-in-ip4-fa", "ip4-sv-reassembly-feature", "ip4-dhcp-client-detect"),
+  .runs_after = 0,
 };
 VNET_FEATURE_INIT (ip4_nat44_ei_hairpin_dst, static) = {
   .arc_name = "ip4-unicast",
   .node_name = "nat44-ei-hairpin-dst",
-  .runs_after = VNET_FEATURES ("acl-plugin-in-ip4-fa",
-			       "ip4-sv-reassembly-feature"),
+  // .runs_after = VNET_FEATURES ("acl-plugin-in-ip4-fa", "ip4-sv-reassembly-feature"),
+  .runs_after = 0,
 };
 VNET_FEATURE_INIT (ip4_nat44_ei_hairpin_src, static) = {
   .arc_name = "ip4-output",
   .node_name = "nat44-ei-hairpin-src",
-  .runs_after = VNET_FEATURES ("acl-plugin-out-ip4-fa",
-			       "ip4-sv-reassembly-output-feature"),
+  // .runs_after = VNET_FEATURES ("acl-plugin-out-ip4-fa", "ip4-sv-reassembly-output-feature"),
+  .runs_after = 0,
 };
 VNET_FEATURE_INIT (ip4_nat44_ei_hairpinning, static) = {
   .arc_name = "ip4-local",
@@ -155,8 +153,8 @@ VNET_FEATURE_INIT (ip4_nat44_ei_out2in_worker_handoff, static) = {
 VNET_FEATURE_INIT (ip4_nat44_ei_in2out_output_worker_handoff, static) = {
   .arc_name = "ip4-output",
   .node_name = "nat44-ei-in2out-output-worker-handoff",
-  .runs_after = VNET_FEATURES ("acl-plugin-out-ip4-fa",
-			       "ip4-sv-reassembly-output-feature"),
+  // .runs_after = VNET_FEATURES ("acl-plugin-out-ip4-fa", "ip4-sv-reassembly-output-feature"),
+  .runs_after = 0,
 };
 
 VLIB_PLUGIN_REGISTER () = {
