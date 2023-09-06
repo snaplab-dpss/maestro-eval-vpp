@@ -152,7 +152,7 @@ ip4_input_inline (vlib_main_t * vm,
   vlib_get_buffers (vm, from, bufs, n_left_from);
   b = bufs;
   next = nexts;
-#if (CLIB_N_PREFETCHES >= 8)
+
   while (n_left_from >= 4)
     {
       u32 x = 0;
@@ -235,72 +235,6 @@ ip4_input_inline (vlib_main_t * vm,
       next += 4;
       n_left_from -= 4;
     }
-#elif (CLIB_N_PREFETCHES >= 4)
-  while (n_left_from >= 2)
-    {
-      u32 x = 0;
-      u32 next0, next1;
-
-      /* Prefetch next iteration. */
-      if (n_left_from >= 6)
-	{
-	  vlib_prefetch_buffer_header (b[4], LOAD);
-	  vlib_prefetch_buffer_header (b[5], LOAD);
-
-	  vlib_prefetch_buffer_data (b[2], LOAD);
-	  vlib_prefetch_buffer_data (b[3], LOAD);
-	}
-
-      vnet_buffer (b[0])->ip.adj_index[VLIB_RX] = ~0;
-      vnet_buffer (b[1])->ip.adj_index[VLIB_RX] = ~0;
-
-      sw_if_index[0] = vnet_buffer (b[0])->sw_if_index[VLIB_RX];
-      sw_if_index[1] = vnet_buffer (b[1])->sw_if_index[VLIB_RX];
-
-      x |= sw_if_index[0] ^ last_sw_if_index;
-      x |= sw_if_index[1] ^ last_sw_if_index;
-
-      if (PREDICT_TRUE (x == 0))
-	{
-	  /* we deal with 2 more packets sharing the same sw_if_index
-	     with the previous one, so we can optimize */
-	  cnt += 2;
-	  if (arc_enabled)
-	    {
-	      next0 = ip4_input_set_next (sw_if_index[0], b[0], 1);
-	      next1 = ip4_input_set_next (sw_if_index[1], b[1], 1);
-	    }
-	  else
-	    {
-	      next0 = ip4_input_set_next (sw_if_index[0], b[0], 0);
-	      next1 = ip4_input_set_next (sw_if_index[1], b[1], 0);
-	    }
-	}
-      else
-	{
-	  ip4_input_check_sw_if_index (vm, cm, sw_if_index[0],
-				       &last_sw_if_index, &cnt, &arc_enabled);
-	  ip4_input_check_sw_if_index (vm, cm, sw_if_index[1],
-				       &last_sw_if_index, &cnt, &arc_enabled);
-
-	  next0 = ip4_input_set_next (sw_if_index[0], b[0], 1);
-	  next1 = ip4_input_set_next (sw_if_index[1], b[1], 1);
-	}
-
-      ip[0] = vlib_buffer_get_current (b[0]);
-      ip[1] = vlib_buffer_get_current (b[1]);
-
-      ip4_input_check_x2 (vm, error_node, b[0], b[1], ip[0], ip[1],
-			  &next0, &next1, verify_checksum);
-      next[0] = (u16) next0;
-      next[1] = (u16) next1;
-
-      /* next */
-      b += 2;
-      next += 2;
-      n_left_from -= 2;
-    }
-#endif
 
   while (n_left_from)
     {
@@ -364,7 +298,7 @@ ip4_input_inline (vlib_main_t * vm,
 VLIB_NODE_FN (ip4_input_node) (vlib_main_t * vm, vlib_node_runtime_t * node,
 			       vlib_frame_t * frame)
 {
-  return ip4_input_inline (vm, node, frame, /* verify_checksum */ 1);
+  return ip4_input_inline (vm, node, frame, /* verify_checksum */ 0);
 }
 
 VLIB_NODE_FN (ip4_input_no_checksum_node) (vlib_main_t * vm,
