@@ -39,5 +39,13 @@ RUN git fetch upstream
 RUN yes | make install-deps
 RUN make build-release
 
+RUN sudo apt-get update
+RUN sudo apt-get install -y \
+    linux-tools-common \
+    linux-tools-generic \
+    linux-tools-`uname -r` \
+    wget \
+    htop
+
 SHELL [ "/bin/bash" ]
 CMD [ "/bin/bash" ]

@@ -120,3 +120,50 @@ Packet 1
 9. ip4-rewrite
 10. wan-output
 11. wan-tx
+
+## Performance analyzer
+
+### Retrieve and archive perf data
+
+
+```bash
+# Build the container (if needed)
+$ docker-compose build
+
+# Run the container
+$ docker-compose run -it vpp /bin/bash
+
+# Run the VPP NAT
+$ sudo ./build-root/install-vpp-native/vpp/bin/vpp -c ./maestro-eval-utils/vpp-startup.conf
+
+# Spawn another terminal inside the container (e.g. run inside tmux, or jump to the container again),
+# and find out the PID of one of the running vpp workers (e.g. with htop).
+# Run the traffic generator and record the performance (for 30 seconds).
+$ sudo perf record --call-graph dwarf -p $PID sleep 30
+
+# Archive the report for the symbols to be available on external machines
+# Get https://raw.githubusercontent.com/torvalds/linux/master/tools/perf/perf-archive.sh if perf archive is not available.
+# This generates `perf.data` and `perf.data.tar.bz2`. These can be later copied to other machines and analyzed.
+$ sudo perf archive
+```
+
+### Visualize perf data
+
+```bash
+# First extract the debug data
+$ mkdir -p ~/.debug && tar xvf perf.data.tar.bz2 -C ~/.debug
+
+# And finally analyze the report
+$ perf report
+
+# We can also use FlameGraph to render a flame performance graph.
+# Source: https://github.com/brendangregg/FlameGraph
+$ perf script | $FLAMEGRAPH_DIR/stackcollapse-perf.pl > out.perf-folded
+$ $FLAMEGRAPH_DIR/flamegraph.pl out.perf-folded > perf.svg
+```
+
+## Modifications
+
+- Disabled node counters (`vlib_node_increment_counter`)
+- Disabled IPv4 checksum
+- Removed IPv4 reassembly feature from the NAT44-ei path (`"ip4-sv-reassembly-feature"`)
