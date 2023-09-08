@@ -1,0 +1,28 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 120K of event 'cpu/mem-loads,ldlat=30/P'
+# Total weight : 13371802
+# Sort order   : sample
+#
+# Overhead       Samples
+# ........  ............
+#
+   100.00%        120686
+
+
+# Samples: 121K of event 'cpu/mem-stores/P'
+# Total weight : 121192
+# Sort order   : sample
+#
+# Overhead       Samples
+# ........  ............
+#
+   100.00%        121192
+
+
+#
+# (Tip: For hierarchical output, try: perf report --hierarchy)
+#

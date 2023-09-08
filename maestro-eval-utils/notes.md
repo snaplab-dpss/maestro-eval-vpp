@@ -123,8 +123,9 @@ Packet 1
 
 ## Performance analyzer
 
-### Retrieve and archive perf data
+### Time
 
+**Retrieve and archive perf data:**
 
 ```bash
 # Build the container (if needed)
@@ -147,11 +148,11 @@ $ sudo perf record --call-graph dwarf -p $PID sleep 30
 $ sudo perf archive
 ```
 
-### Visualize perf data
+**Visualize perf data:**
 
 ```bash
 # First extract the debug data
-$ mkdir -p ~/.debug && tar xvf perf.data.tar.bz2 -C ~/.debug
+$ rm -rf ~/.debug && mkdir -p ~/.debug && tar xvf perf.data.tar.bz2 -C ~/.debug
 
 # And finally analyze the report
 $ perf report
@@ -160,6 +161,46 @@ $ perf report
 # Source: https://github.com/brendangregg/FlameGraph
 $ perf script | $FLAMEGRAPH_DIR/stackcollapse-perf.pl > out.perf-folded
 $ $FLAMEGRAPH_DIR/flamegraph.pl out.perf-folded > perf.svg
+```
+
+### Memory
+
+**Retrieve and archive perf data:**
+
+```bash
+# Build the container (if needed)
+$ docker-compose build
+
+# Run the container
+$ docker-compose run -it vpp /bin/bash
+
+# Run the VPP NAT
+$ sudo ./build-root/install-vpp-native/vpp/bin/vpp -c ./maestro-eval-utils/vpp-startup.conf
+
+# Spawn another terminal inside the container (e.g. run inside tmux, or jump to the container again).
+# Run the traffic generator and record the performance (for 30 seconds).
+$ sudo perf mem record -a sleep 30
+
+# Archive the report for the symbols to be available on external machines
+# Get https://raw.githubusercontent.com/torvalds/linux/master/tools/perf/perf-archive.sh if perf archive is not available.
+# This generates `perf.data` and `perf.data.tar.bz2`. These can be later copied to other machines and analyzed.
+$ sudo perf archive
+```
+
+**Visualize perf data:**
+
+```bash
+# First extract the debug data
+$ rm -rf ~/.debug && mkdir -p ~/.debug && tar xvf perf.data.tar.bz2 -C ~/.debug
+
+# Generate the general report
+$ perf mem report --stdio > report.txt
+
+# Sort by samples
+$ perf mem report --sort=sample --stdio > report-sorted-by-sample.txt
+
+# Sort by symbols
+$ perf mem report --sort=symbol --stdio > report-sorted-by-symbol.txt
 ```
 
 ## Modifications

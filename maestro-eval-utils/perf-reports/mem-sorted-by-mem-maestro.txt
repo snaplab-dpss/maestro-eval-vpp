@@ -1,0 +1,35 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 121K of event 'cpu/mem-loads,ldlat=30/P'
+# Total weight : 9724921
+# Sort order   : mem
+#
+# Overhead       Samples  Memory access           
+# ........  ............  ........................
+#
+    55.24%         70944  L1 or L1 hit            
+    35.51%         41249  LFB/MAB or LFB/MAB hit  
+     8.28%          8067  L3 or L3 hit            
+     0.64%           199  Local RAM or RAM hit    
+     0.22%           523  L2 or L2 hit            
+     0.11%            17  Remote RAM hit          
+     0.00%             2  L3 miss                 
+
+
+# Samples: 122K of event 'cpu/mem-stores/P'
+# Total weight : 122124
+# Sort order   : mem
+#
+# Overhead       Samples  Memory access           
+# ........  ............  ........................
+#
+    98.77%        120624  L1 hit                  
+     1.23%          1500  L1 miss                 
+
+
+#
+# (Tip: Generate a script for your data: perf script -g <lang>)
+#
