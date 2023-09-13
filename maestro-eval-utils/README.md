@@ -220,10 +220,21 @@ $ grep "nf_process" mem-maestro.txt | wc -l
 
 ```bash
 # Run and collect performance counters
-$ sudo perf stat ./build-root/build-vpp-native/vpp/bin/vpp -c ./maestro-eval-utils/vpp-startup.conf
+$ sudo perf stat \
+  -e mem_inst_retired.all_loads \
+  -e mem_inst_retired.all_stores \
+  ./build-root/build-vpp-native/vpp/bin/vpp -c ./maestro-eval-utils/vpp-startup.conf
 
 # Run the TG for at least 30 seconds, then stop the NF using ctrl+C (the results will be shown on exit).
 ```
+
+|               | Maestro           | VPP               |
+|---------------|-------------------|-------------------|
+| #Packets      | 2,435,728,604     | 2,032,489,457     |
+| Loads         | 1,342,103,835,364 | 1,148,295,114,956 |
+| Stores        | 556,860,137,789   | 498,215,562,838   |
+| Loads/packet  | 551               | 565               |
+| Stores/packet | 229               | 245               |
 
 ## Modifications
 

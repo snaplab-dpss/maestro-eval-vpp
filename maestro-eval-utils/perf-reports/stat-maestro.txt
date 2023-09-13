@@ -1,15 +1,9 @@
  Performance counter stats for './nat-locks --lcores 16-31 -- /home/fcp/maestro-eval/pcaps/uniform_64B.pcap':
 
-         718068.02 msec task-clock                #   15.852 CPUs utilized          
-               570      context-switches          #    0.794 /sec                   
-                17      cpu-migrations            #    0.024 /sec                   
-              8047      page-faults               #   11.206 /sec                   
-     2316928727055      cycles                    #    3.227 GHz                    
-     4676656769249      instructions              #    2.02  insn per cycle         
-      876736715155      branches                  #    1.221 G/sec                  
-        1888835592      branch-misses             #    0.22% of all branches        
+     1342103835364      mem_inst_retired.all_loads                                   
+      556860137789      mem_inst_retired.all_stores                                   
 
-      45.297356630 seconds time elapsed
+      46.469865949 seconds time elapsed
 
-     717.988376000 seconds user
-       0.079998000 seconds sys
+     737.299292000 seconds user
+       0.072002000 seconds sys
