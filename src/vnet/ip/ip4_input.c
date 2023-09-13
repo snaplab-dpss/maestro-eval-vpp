@@ -70,18 +70,18 @@ ip4_input_set_next (u32 sw_if_index, vlib_buffer_t * b, int arc_enabled)
   u32 next;
   u8 arc;
 
-  ip4_header_t *ip = vlib_buffer_get_current (b);
+  // ip4_header_t *ip = vlib_buffer_get_current (b);
 
-  if (PREDICT_FALSE (ip4_address_is_multicast (&ip->dst_address)))
-    {
-      next = IP4_INPUT_NEXT_LOOKUP_MULTICAST;
-      arc = lm->mcast_feature_arc_index;
-    }
-  else
-    {
+  // if (PREDICT_FALSE (ip4_address_is_multicast (&ip->dst_address)))
+  //   {
+  //     next = IP4_INPUT_NEXT_LOOKUP_MULTICAST;
+  //     arc = lm->mcast_feature_arc_index;
+  //   }
+  // else
+    // {
       next = IP4_INPUT_NEXT_LOOKUP;
       arc = lm->ucast_feature_arc_index;
-    }
+    // }
 
   if (arc_enabled)
     vnet_feature_arc_start (arc, sw_if_index, &next, b);
