@@ -1,0 +1,15 @@
+ Performance counter stats for './build-root/build-vpp-native/vpp/bin/vpp -c ./maestro-eval-utils/vpp-startup.conf':
+
+         703568.23 msec task-clock                #   15.565 CPUs utilized          
+              6918      context-switches          #    9.833 /sec                   
+                17      cpu-migrations            #    0.024 /sec                   
+            251860      page-faults               #  357.975 /sec                   
+     2241371161508      cycles                    #    3.186 GHz                    
+     3677271498176      instructions              #    1.64  insn per cycle         
+      549715801484      branches                  #  781.326 M/sec                  
+        1845217927      branch-misses             #    0.34% of all branches        
+
+      45.200629398 seconds time elapsed
+
+     701.829538000 seconds user
+       1.748262000 seconds sys

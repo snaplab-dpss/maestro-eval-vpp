@@ -216,6 +216,15 @@ $ grep "nat44_ei_in2out_node_fn_inline" mem-vpp-post-changes.txt | wc -l
 $ grep "nf_process" mem-maestro.txt | wc -l
 ```
 
+### Performance Counters
+
+```bash
+# Run and collect performance counters
+$ sudo perf stat ./build-root/build-vpp-native/vpp/bin/vpp -c ./maestro-eval-utils/vpp-startup.conf
+
+# Run the TG for at least 30 seconds, then stop the NF using ctrl+C (the results will be shown on exit).
+```
+
 ## Modifications
 
 - Disabled node counters (`vlib_node_increment_counter`)
