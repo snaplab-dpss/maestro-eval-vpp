@@ -3,26 +3,26 @@
 #
 # Total Lost Samples: 0
 #
-# Samples: 121K of event 'cpu/mem-loads,ldlat=30/P'
-# Total weight : 9724921
+# Samples: 181K of event 'cpu/mem-loads,ldlat=30/P'
+# Total weight : 20163652
 # Sort order   : sample
 #
 # Overhead       Samples
 # ........  ............
 #
-   100.00%        121001
+   100.00%        181190
 
 
-# Samples: 122K of event 'cpu/mem-stores/P'
-# Total weight : 122124
+# Samples: 181K of event 'cpu/mem-stores/P'
+# Total weight : 181474
 # Sort order   : sample
 #
 # Overhead       Samples
 # ........  ............
 #
-   100.00%        122124
+   100.00%        181474
 
 
 #
-# (Tip: See assembly instructions with percentage: perf annotate <symbol>)
+# (Tip: System-wide collection from all CPUs: perf record -a)
 #

@@ -3,26 +3,26 @@
 #
 # Total Lost Samples: 0
 #
-# Samples: 121K of event 'cpu/mem-loads,ldlat=30/P'
-# Total weight : 13131675
+# Samples: 158K of event 'cpu/mem-loads,ldlat=30/P'
+# Total weight : 14516726
 # Sort order   : sample
 #
 # Overhead       Samples
 # ........  ............
 #
-   100.00%        121704
+   100.00%        158958
 
 
-# Samples: 122K of event 'cpu/mem-stores/P'
-# Total weight : 122889
+# Samples: 166K of event 'cpu/mem-stores/P'
+# Total weight : 166930
 # Sort order   : sample
 #
 # Overhead       Samples
 # ........  ............
 #
-   100.00%        122889
+   100.00%        166930
 
 
 #
-# (Tip: To browse sample contexts use perf report --sample 10 and select in context menu)
+# (Tip: Show user configuration overrides: perf config --user --list)
 #

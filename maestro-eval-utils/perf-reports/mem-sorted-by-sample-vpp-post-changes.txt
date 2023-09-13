@@ -3,26 +3,26 @@
 #
 # Total Lost Samples: 0
 #
-# Samples: 120K of event 'cpu/mem-loads,ldlat=30/P'
-# Total weight : 13371802
+# Samples: 183K of event 'cpu/mem-loads,ldlat=30/P'
+# Total weight : 16459582
 # Sort order   : sample
 #
 # Overhead       Samples
 # ........  ............
 #
-   100.00%        120686
+   100.00%        183054
 
 
-# Samples: 121K of event 'cpu/mem-stores/P'
-# Total weight : 121192
+# Samples: 197K of event 'cpu/mem-stores/P'
+# Total weight : 197175
 # Sort order   : sample
 #
 # Overhead       Samples
 # ........  ............
 #
-   100.00%        121192
+   100.00%        197175
 
 
 #
-# (Tip: For hierarchical output, try: perf report --hierarchy)
+# (Tip: For memory address profiling, try: perf mem record / perf mem report)
 #

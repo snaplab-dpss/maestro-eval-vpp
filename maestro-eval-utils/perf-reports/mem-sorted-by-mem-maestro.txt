@@ -3,33 +3,33 @@
 #
 # Total Lost Samples: 0
 #
-# Samples: 121K of event 'cpu/mem-loads,ldlat=30/P'
-# Total weight : 9724921
+# Samples: 181K of event 'cpu/mem-loads,ldlat=30/P'
+# Total weight : 20163652
 # Sort order   : mem
 #
 # Overhead       Samples  Memory access           
 # ........  ............  ........................
 #
-    55.24%         70944  L1 or L1 hit            
-    35.51%         41249  LFB/MAB or LFB/MAB hit  
-     8.28%          8067  L3 or L3 hit            
-     0.64%           199  Local RAM or RAM hit    
-     0.22%           523  L2 or L2 hit            
-     0.11%            17  Remote RAM hit          
-     0.00%             2  L3 miss                 
+    55.10%        111789  L1 or L1 hit            
+    29.82%         46468  LFB/MAB or LFB/MAB hit  
+    11.67%         19447  L3 or L3 hit            
+     3.10%          2063  Local RAM or RAM hit    
+     0.29%          1413  L2 or L2 hit            
+     0.02%             7  Remote Any cache hit    
+     0.00%             3  L3 miss                 
 
 
-# Samples: 122K of event 'cpu/mem-stores/P'
-# Total weight : 122124
+# Samples: 181K of event 'cpu/mem-stores/P'
+# Total weight : 181474
 # Sort order   : mem
 #
 # Overhead       Samples  Memory access           
 # ........  ............  ........................
 #
-    98.77%        120624  L1 hit                  
-     1.23%          1500  L1 miss                 
+    98.97%        179609  L1 hit                  
+     1.03%          1865  L1 miss                 
 
 
 #
-# (Tip: Generate a script for your data: perf script -g <lang>)
+# (Tip: System-wide collection from all CPUs: perf record -a)
 #

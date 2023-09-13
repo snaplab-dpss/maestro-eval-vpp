@@ -3,34 +3,34 @@
 #
 # Total Lost Samples: 0
 #
-# Samples: 121K of event 'cpu/mem-loads,ldlat=30/P'
-# Total weight : 13131675
+# Samples: 158K of event 'cpu/mem-loads,ldlat=30/P'
+# Total weight : 14516726
 # Sort order   : mem
 #
 # Overhead       Samples  Memory access           
 # ........  ............  ........................
 #
-    51.69%         57690  LFB/MAB or LFB/MAB hit  
-    31.88%         42898  L1 or L1 hit            
-     9.37%         14260  L3 or L3 hit            
-     5.21%          2003  Local RAM or RAM hit    
-     1.68%          4158  L2 or L2 hit            
-     0.15%            35  Remote Any cache hit    
-     0.03%             1  Uncached or N/A hit     
-     0.01%           659  L3 miss                 
+    46.60%         57994  LFB/MAB or LFB/MAB hit  
+    38.60%         79809  L1 or L1 hit            
+     8.61%         14395  L3 or L3 hit            
+     4.46%          1892  Local RAM or RAM hit    
+     1.53%          4186  L2 or L2 hit            
+     0.16%            45  Remote Any cache hit    
+     0.02%             1  Uncached or N/A hit     
+     0.01%           636  L3 miss                 
 
 
-# Samples: 122K of event 'cpu/mem-stores/P'
-# Total weight : 122889
+# Samples: 166K of event 'cpu/mem-stores/P'
+# Total weight : 166930
 # Sort order   : mem
 #
 # Overhead       Samples  Memory access           
 # ........  ............  ........................
 #
-    98.52%        121066  L1 hit                  
-     1.48%          1823  L1 miss                 
+    98.93%        165142  L1 hit                  
+     1.07%          1788  L1 miss                 
 
 
 #
-# (Tip: To set sample time separation other than 100ms with --sort time use --time-quantum)
+# (Tip: To separate samples by time use perf report --sort time,overhead,sym)
 #

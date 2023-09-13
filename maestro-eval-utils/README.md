@@ -174,14 +174,11 @@ $ docker-compose build
 # Run the container
 $ docker-compose run -it vpp /bin/bash
 
-# Run the VPP NAT
-$ sudo ./build-root/install-vpp-native/vpp/bin/vpp -c ./maestro-eval-utils/vpp-startup.conf
+# Run the VPP NAT and record
+$ sudo perf mem record ./build-root/install-vpp-native/vpp/bin/vpp -c ./maestro-eval-utils/vpp-startup.conf
 
-# Spawn another terminal inside the container (e.g. run inside tmux, or jump to the container again).
-# Run the traffic generator and record the performance (for 30 seconds).
-$ sudo perf mem record -a sleep 30
-
-# Archive the report for the symbols to be available on external machines
+# Now generate traffic for at least 30 seconds.
+# When finalized, archive the report for the symbols to be available on external machines
 # Get https://raw.githubusercontent.com/torvalds/linux/master/tools/perf/perf-archive.sh if perf archive is not available.
 # This generates `perf.data` and `perf.data.tar.bz2`. These can be later copied to other machines and analyzed.
 $ sudo perf archive
@@ -201,6 +198,22 @@ $ perf mem report --sort=sample --stdio > report-sorted-by-sample.txt
 
 # Sort by symbols
 $ perf mem report --sort=symbol --stdio > report-sorted-by-symbol.txt
+
+# Sort by mem
+$ perf mem report --sort=mem --stdio > report-sorted-by-mem.txt
+```
+
+Retrieve the number of packets of each sample:
+
+```bash
+# VPP pre
+$ grep "nat44_ei_in2out_node_fn_inline" mem-vpp-pre-changes.txt | wc -l
+
+# VPP post
+$ grep "nat44_ei_in2out_node_fn_inline" mem-vpp-post-changes.txt | wc -l
+
+# Maestro
+$ grep "nf_process" mem-maestro.txt | wc -l
 ```
 
 ## Modifications
@@ -209,3 +222,4 @@ $ perf mem report --sort=symbol --stdio > report-sorted-by-symbol.txt
 - Disabled IPv4 checksum
 - Removed IPv4 reassembly feature from the NAT44-ei path (`"ip4-sv-reassembly-feature"`)
 - Replaced IPv4 lookup with static forwarding (`ip4_lookup_inline`)
+- Disabled IPv4 multicast detection (`ip4_input_set_next`)
