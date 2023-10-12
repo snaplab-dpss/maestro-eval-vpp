@@ -55,3 +55,4 @@ RUN chmod +x perf-archive.sh
 
 SHELL [ "/bin/bash" ]
 CMD [ "/bin/bash" ]
+ENTRYPOINT [ "maestro-eval-utils/scripts/run-vpp.sh" ]
