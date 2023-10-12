@@ -9,3 +9,4 @@ cd $VPP_DIR
 
 container_id=$(docker ps | grep "maestro-eval-vpp_vpp" | awk '{ print $1 }')
 docker stop $container_id
+docker rm $container_id
